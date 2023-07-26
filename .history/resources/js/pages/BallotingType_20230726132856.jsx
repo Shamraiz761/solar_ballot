@@ -1,0 +1,89 @@
+import React, { useState, useEffect } from "react";
+import Banner from "../components/banner/Banner";
+import { Inertia } from "@inertiajs/inertia";
+import { Link } from "@inertiajs/react";
+
+function BallotingType({ applicants }) {
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedOption, setSelectedOption] = useState("--Select--");
+    const [tehsilOptions, setTehsilOptions] = useState([]);
+
+    useEffect(() => {
+        const uniqueTehsils = Array.from(
+            new Set(applicants.map((applicant) => applicant.tehsil.toUpperCase()))
+        );
+        setTehsilOptions(uniqueTehsils);
+    }, [applicants]);
+
+    const onOptionChangeHandler = (event) => {
+        setSelectedOption(event.target.value);
+        setIsOpen(false);
+    };
+
+    const validateForm = () => {
+        if (selectedOption === "--Select--") {
+            alert("Balloting Type is missing");
+            return false;
+        }
+        return true;
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        // Check if the form is valid before proceeding
+        if (!validateForm()) {
+            return; // Form validation failed, don't proceed
+        }
+
+        const selectedTehsilApplicants = applicants.filter(
+            (applicant) =>
+                applicant.tehsil.toLowerCase() === selectedOption.toLowerCase()
+        );
+
+        Inertia.post("/shuffle", {
+            filteredApplicants: selectedTehsilApplicants,
+        });
+    };
+
+    return (
+        <div>
+            <Banner />
+            <div className="m-5 bg-green-500 text-white py-2 text-xl md:text-4xl uppercase">
+                <h1 className="text-center font-bold">Select Balloting Type</h1>
+            </div>
+
+            <div className="flex justify-center items-center w-[100%] my-5">
+                <div className="flex justify-center items-center flex-col bg-gray-100 w-[80vw] py-8">
+                    <form onSubmit={handleSubmit} className="flex flex-row">
+                        <label className="inline-block text-xl md:text-2xl font-medium text-gray-900 mr-4 md:mr-8">
+                            Select Balloting Type
+                        </label>
+                        <div className="relative">
+                            <select
+                                value={selectedOption}
+                                onChange={onOptionChangeHandler}
+                                className="py-2 pl-3 text-xl md:text-2xl text-gray-900 bg-white font-medium border border-gray-600 w-[200px] outline-none"
+                            >
+                                <option value="--Select--">--Select--</option>
+                                {tehsilOptions.map((option, index) => (
+                                    <option key={index} value={option}>
+                                        {option}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <button
+                            type="submit"
+                            className="my-5 text-lg md:text-2xl uppercase px-12 py-4 text-white bg-gray-900 hover:bg-green-600 font-semibold rounded-lg"
+                        >
+                            Submit
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default BallotingType;
