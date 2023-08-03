@@ -5,7 +5,6 @@ import ShuffleTable from "../components/tables/ShuffleTable";
 function ShuffleApplicants({ shuffleApplicants }) {
     return (
         <div>
-            <Shuffle />
             <ShuffleTable shuffleApplicants={shuffleApplicants} />
         </div>
     );

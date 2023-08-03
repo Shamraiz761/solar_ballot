@@ -2969,10 +2969,10 @@ function DrawTable(_ref) {
 
 /***/ }),
 
-/***/ "./resources/js/components/tables/ShuffleTable.jsx":
-/*!*********************************************************!*\
-  !*** ./resources/js/components/tables/ShuffleTable.jsx ***!
-  \*********************************************************/
+/***/ "./resources/js/components/tables/PlotTable.jsx":
+/*!******************************************************!*\
+  !*** ./resources/js/components/tables/PlotTable.jsx ***!
+  \******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2983,11 +2983,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-function ShuffleTable(_ref) {
-  var _ref$shuffleApplicant = _ref.shuffleApplicants,
-    shuffleApplicants = _ref$shuffleApplicant === void 0 ? [] : _ref$shuffleApplicant;
+function PlotTable() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "m-5"
+    className: ""
   }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "relative overflow-x-auto"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("table", {
@@ -3006,7 +3004,50 @@ function ShuffleTable(_ref) {
   }, "CNIC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
     scope: "col",
     className: "px-6 py-3"
-  }, "Mobile"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, JSON.parse(shuffleApplicants).map(function (applicant, index) {
+  }, "Mobile"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null))));
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PlotTable);
+
+/***/ }),
+
+/***/ "./resources/js/components/tables/ShuffleTable.jsx":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/tables/ShuffleTable.jsx ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function ShuffleTable(_ref) {
+  var _ref$filteredApplican = _ref.filteredApplicants,
+    filteredApplicants = _ref$filteredApplican === void 0 ? [] : _ref$filteredApplican;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: ""
+  }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "relative overflow-x-auto"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("table", {
+    className: "w-full text-sm text-left text-gray-500 dark:text-gray-400"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("thead", {
+    className: "text-lg font-semibold text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    scope: "col",
+    className: "px-6 py-3"
+  }, "Sr. No"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    scope: "col",
+    className: "px-6 py-3"
+  }, "Applicants Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    scope: "col",
+    className: "px-6 py-3"
+  }, "CNIC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    scope: "col",
+    className: "px-6 py-3"
+  }, "Mobile"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, filteredApplicants.map(function (applicant, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", {
       className: "bg-white border-b dark:bg-gray-800 dark:border-gray-700"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
@@ -3054,8 +3095,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function BallotingType(_ref) {
-  var applicants = _ref.applicants;
-  // console.log(plots);
+  var applicants = _ref.applicants,
+    plots = _ref.plots;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState2 = _slicedToArray(_useState, 2),
     isOpen = _useState2[0],
@@ -3213,29 +3254,16 @@ function Draw(_ref) {
   var formattedApplicants = applicantsArray.map(function (applicant) {
     return "Name: ".concat(applicant.applicant_name, ", CNIC: ").concat(applicant.cnic_no, ",Phone: ").concat(applicant.mobile);
   }).join("\n");
-  // const pdfGenerator = () => {
-  //     setLoading(true);
-  //     const pdf = jsPDF("p", "pt");
-  //     pdf.text(40, 40, formattedApplicants);
-  //     pdf.save("generated.pdf");
-  //     setLoading(false);
-  // };
-
   var pdfGenerator = function pdfGenerator() {
     setLoading(true);
     var pdf = (0,jspdf__WEBPACK_IMPORTED_MODULE_3__["default"])("p", "pt");
     pdf.text(40, 40, formattedApplicants);
-
-    // Open the PDF in a new tab for viewing
     var pdfData = pdf.output();
     var blob = new Blob([pdfData], {
       type: "application/pdf"
     });
     var url = URL.createObjectURL(blob);
     window.open(url, "_blank");
-
-    // Simulate loading for 2 seconds
-
     setLoading(false);
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -3320,6 +3348,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_banner_Banner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/banner/Banner */ "./resources/js/components/banner/Banner.jsx");
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
 /* harmony import */ var _components_loading_LoadingPage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/loading/LoadingPage */ "./resources/js/components/loading/LoadingPage.jsx");
+/* harmony import */ var _components_tables_ShuffleTable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/tables/ShuffleTable */ "./resources/js/components/tables/ShuffleTable.jsx");
+/* harmony import */ var _components_tables_PlotTable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/tables/PlotTable */ "./resources/js/components/tables/PlotTable.jsx");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
@@ -3330,6 +3360,8 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -3363,9 +3395,10 @@ function Shuffle(_ref2) {
     _useState8 = _slicedToArray(_useState7, 2),
     loading = _useState8[0],
     setLoading = _useState8[1];
-  var totalEnteries = function totalEnteries() {
-    setopen(!open);
-  };
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState10 = _slicedToArray(_useState9, 2),
+    type = _useState10[0],
+    setType = _useState10[1];
   var handleInputChange = function handleInputChange(index, value) {
     var updatedKeys = _toConsumableArray(keys);
     updatedKeys[index] = value;
@@ -3390,9 +3423,7 @@ function Shuffle(_ref2) {
     setTimeout(function () {
       setLoading(false);
     }, 1000);
-    // setLoading(false)
   };
-
   var handleStart = function handleStart() {
     if (keys.some(function (key) {
       return key === "";
@@ -3404,16 +3435,6 @@ function Shuffle(_ref2) {
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.get("/draw", {
       drawApplicants: JSON.stringify(shuffledArray)
     });
-  };
-  var applicants = function applicants() {
-    setLoading(true);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.get("/shuffleApplicants", {
-      shuffleApplicants: JSON.stringify(shuffledArray)
-    });
-  };
-  var plots = function plots() {
-    setLoading(true);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.get("/shufflePlots");
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: " "
@@ -3510,65 +3531,20 @@ function Shuffle(_ref2) {
   }, "Applicants"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "my-5"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    onClick: applicants,
+    onClick: function onClick() {
+      return setType("Applicants");
+    },
     className: "py-2 w-36 rounded-md bg-blue-600 hover:bg-green-600 text-lg font-medium text-white  "
   }, "Applicants"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    onClick: plots,
+    onClick: function onClick() {
+      return setType("Plots");
+    },
     className: "py-2 w-36 rounded-md bg-blue-600 hover:bg-green-600 text-lg font-medium text-white  ml-4"
-  }, "Plots")))));
+  }, "Plots")), type == "Applicants" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_tables_ShuffleTable__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    filteredApplicants: shuffledArray
+  })), type == "Plots" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_tables_PlotTable__WEBPACK_IMPORTED_MODULE_5__["default"], null)))));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Shuffle);
-
-/***/ }),
-
-/***/ "./resources/js/pages/ShuffleApplicants.jsx":
-/*!**************************************************!*\
-  !*** ./resources/js/pages/ShuffleApplicants.jsx ***!
-  \**************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Shuffle__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Shuffle */ "./resources/js/pages/Shuffle.jsx");
-/* harmony import */ var _components_tables_ShuffleTable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/tables/ShuffleTable */ "./resources/js/components/tables/ShuffleTable.jsx");
-
-
-
-function ShuffleApplicants(_ref) {
-  var shuffleApplicants = _ref.shuffleApplicants;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Shuffle__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_tables_ShuffleTable__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    shuffleApplicants: shuffleApplicants
-  }));
-}
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ShuffleApplicants);
-
-/***/ }),
-
-/***/ "./resources/js/pages/ShufflePlots.jsx":
-/*!*********************************************!*\
-  !*** ./resources/js/pages/ShufflePlots.jsx ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Shuffle__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Shuffle */ "./resources/js/pages/Shuffle.jsx");
-
-
-function ShufflePlots() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Shuffle__WEBPACK_IMPORTED_MODULE_1__["default"], null), "djhdhjdcjdhjdhc");
-}
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ShufflePlots);
 
 /***/ }),
 
@@ -49470,9 +49446,7 @@ var withProp = function withProp(needle, fn) {
 var map = {
 	"./BallotingType.jsx": "./resources/js/pages/BallotingType.jsx",
 	"./Draw.jsx": "./resources/js/pages/Draw.jsx",
-	"./Shuffle.jsx": "./resources/js/pages/Shuffle.jsx",
-	"./ShuffleApplicants.jsx": "./resources/js/pages/ShuffleApplicants.jsx",
-	"./ShufflePlots.jsx": "./resources/js/pages/ShufflePlots.jsx"
+	"./Shuffle.jsx": "./resources/js/pages/Shuffle.jsx"
 };
 
 
