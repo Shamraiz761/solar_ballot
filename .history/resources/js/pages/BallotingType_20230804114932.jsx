@@ -53,16 +53,17 @@ function BallotingType({ applicants, plots}) {
         const encodedApplicants = encodeURIComponent(
             JSON.stringify(selectedTehsilApplicants)
         );
-
+        
         const selectedTehsilPlots = plots.filter(
             (plot) => plot.tehsil.toLowerCase() === selectedOption.toLowerCase()
         );
     
-        
+        // Convert the filtered plots data to an encoded URI component
         const encodedPlots = encodeURIComponent(JSON.stringify(selectedTehsilPlots));
-   
+    
+        // Send both filtered applicants and plots data to the /shuffle screen
         Inertia.get(`/shuffle?filteredApplicants=${encodedApplicants}&filteredPlots=${encodedPlots}`);
-        
+        Inertia.get(`/shuffle?filteredApplicants=${encodedApplicants}`);
         
     };
 

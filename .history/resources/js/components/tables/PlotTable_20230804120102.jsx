@@ -36,9 +36,9 @@ function PlotTable({plots}) {
                             >
                                 {index+1}
                             </th>
-                            <td className="px-6 py-4">{plot.plot_no}</td>
-                            <td className="px-6 py-4">{plot.plot_code}</td>
-                            <td className="px-6 py-4">{plot.plot_category}</td>
+                            <td className="px-6 py-4">{plot.applicant_name}</td>
+                            <td className="px-6 py-4">{applicant.cnic_no}</td>
+                            <td className="px-6 py-4">{applicant.mobile}</td>
                         </tr>
                             )
                         })

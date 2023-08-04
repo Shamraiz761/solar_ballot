@@ -14,8 +14,10 @@ const shuffleArray = (array) => {
 };
 
 function Shuffle({ filteredApplicants = "[]" ,filteredPlots ="[]"}) {
+    console.log(filteredPlots);
     const applicantsArray = JSON.parse(filteredApplicants);
-    const plotsArray = JSON.parse(filteredPlots);
+    const plotsArray = JSON.parse(filteredApplicants);
+
     const [keys, setKeys] = useState(["", "", "", "", "", "", "", ""]);
     const [shuffledArray, setShuffledArray] = useState(applicantsArray);
     const [open, setopen] = useState(false);
@@ -245,7 +247,7 @@ function Shuffle({ filteredApplicants = "[]" ,filteredPlots ="[]"}) {
                         )}
                         {type == "Plots" && (
                             <div>
-                                <PlotTable plots={plotsArray} />
+                                <PlotTable />
                             </div>
                         )}
                     </div>

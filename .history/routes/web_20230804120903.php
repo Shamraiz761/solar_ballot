@@ -22,7 +22,7 @@ Route::get('/', [ApplicantsController::class, 'index']);
 Route::get('/draw', function () {
     $filteredApplicants = request()->input('drawApplicants', '[]');
     return Inertia::render("Draw", [
-        "filteredApplicants" => $filteredApplicants,
+        $filteredApplicants,
     ]);
 });
 

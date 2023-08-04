@@ -245,7 +245,7 @@ function Shuffle({ filteredApplicants = "[]" ,filteredPlots ="[]"}) {
                         )}
                         {type == "Plots" && (
                             <div>
-                                <PlotTable plots={plotsArray} />
+                                <PlotTable />
                             </div>
                         )}
                     </div>

@@ -27,6 +27,7 @@ Route::get('/draw', function () {
 });
 
 
+
 Route::get('/shuffle', function () {
 
     $filteredApplicants = request()->input('filteredApplicants');

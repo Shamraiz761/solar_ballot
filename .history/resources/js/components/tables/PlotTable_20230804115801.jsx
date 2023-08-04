@@ -1,7 +1,6 @@
 import React from 'react'
 
 function PlotTable({plots}) {
-    console.log(plots);
   return (
     <div className="">
     {" "}
@@ -10,24 +9,23 @@ function PlotTable({plots}) {
             <thead className="text-lg font-semibold text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" className="px-6 py-3">
-                        
-                        ID
+                        Sr. No
                     </th>
                     <th scope="col" className="px-6 py-3">
-                        Plot No
+                        Applicants Name
                     </th>
                     <th scope="col" className="px-6 py-3">
-                    Plot Code
+                        CNIC
                     </th>
                     <th scope="col" className="px-6 py-3">
-                    Plot Category
+                        Mobile
                     </th>
                 </tr>
             </thead>
             <tbody>
                
-                    {
-                        plots.map((plot,index)=>{
+                    {/* {
+                        filteredApplicants.map((applicant,index)=>{
                             return(
                                 <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <th
@@ -36,14 +34,14 @@ function PlotTable({plots}) {
                             >
                                 {index+1}
                             </th>
-                            <td className="px-6 py-4">{plot.plot_no}</td>
-                            <td className="px-6 py-4">{plot.plot_code}</td>
-                            <td className="px-6 py-4">{plot.plot_category}</td>
+                            <td className="px-6 py-4">{applicant.applicant_name}</td>
+                            <td className="px-6 py-4">{applicant.cnic_no}</td>
+                            <td className="px-6 py-4">{applicant.mobile}</td>
                         </tr>
                             )
                         })
                     }
-                  
+                   */}
             </tbody>
         </table>
     </div>

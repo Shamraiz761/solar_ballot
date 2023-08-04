@@ -60,7 +60,8 @@ function BallotingType({ applicants, plots}) {
     
         
         const encodedPlots = encodeURIComponent(JSON.stringify(selectedTehsilPlots));
-   
+    
+        
         Inertia.get(`/shuffle?filteredApplicants=${encodedApplicants}&filteredPlots=${encodedPlots}`);
         
         

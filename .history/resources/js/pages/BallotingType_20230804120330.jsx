@@ -58,9 +58,10 @@ function BallotingType({ applicants, plots}) {
             (plot) => plot.tehsil.toLowerCase() === selectedOption.toLowerCase()
         );
     
-        
+        // Convert the filtered plots data to an encoded URI component
         const encodedPlots = encodeURIComponent(JSON.stringify(selectedTehsilPlots));
-   
+    
+        
         Inertia.get(`/shuffle?filteredApplicants=${encodedApplicants}&filteredPlots=${encodedPlots}`);
         
         

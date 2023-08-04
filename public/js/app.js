@@ -2983,7 +2983,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-function PlotTable() {
+function PlotTable(_ref) {
+  var plots = _ref.plots;
+  console.log(plots);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: ""
   }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -2995,16 +2997,29 @@ function PlotTable() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
     scope: "col",
     className: "px-6 py-3"
-  }, "Sr. No"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+  }, "ID"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
     scope: "col",
     className: "px-6 py-3"
-  }, "Applicants Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+  }, "Plot No"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
     scope: "col",
     className: "px-6 py-3"
-  }, "CNIC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+  }, "Plot Code"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
     scope: "col",
     className: "px-6 py-3"
-  }, "Mobile"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null))));
+  }, "Plot Category"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, plots.map(function (plot, index) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", {
+      className: "bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+      scope: "row",
+      className: "px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+    }, index + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
+      className: "px-6 py-4"
+    }, plot.plot_no), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
+      className: "px-6 py-4"
+    }, plot.plot_code), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
+      className: "px-6 py-4"
+    }, plot.plot_category));
+  })))));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PlotTable);
 
@@ -3145,7 +3160,11 @@ function BallotingType(_ref) {
     });
     setFilteredApplicants(selectedTehsilApplicants);
     var encodedApplicants = encodeURIComponent(JSON.stringify(selectedTehsilApplicants));
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.get("/shuffle?filteredApplicants=".concat(encodedApplicants));
+    var selectedTehsilPlots = plots.filter(function (plot) {
+      return plot.tehsil.toLowerCase() === selectedOption.toLowerCase();
+    });
+    var encodedPlots = encodeURIComponent(JSON.stringify(selectedTehsilPlots));
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.get("/shuffle?filteredApplicants=".concat(encodedApplicants, "&filteredPlots=").concat(encodedPlots));
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: " "
@@ -3377,8 +3396,11 @@ var shuffleArray = function shuffleArray(array) {
 };
 function Shuffle(_ref2) {
   var _ref2$filteredApplica = _ref2.filteredApplicants,
-    filteredApplicants = _ref2$filteredApplica === void 0 ? "[]" : _ref2$filteredApplica;
+    filteredApplicants = _ref2$filteredApplica === void 0 ? "[]" : _ref2$filteredApplica,
+    _ref2$filteredPlots = _ref2.filteredPlots,
+    filteredPlots = _ref2$filteredPlots === void 0 ? "[]" : _ref2$filteredPlots;
   var applicantsArray = JSON.parse(filteredApplicants);
+  var plotsArray = JSON.parse(filteredPlots);
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(["", "", "", "", "", "", "", ""]),
     _useState2 = _slicedToArray(_useState, 2),
     keys = _useState2[0],
@@ -3542,7 +3564,9 @@ function Shuffle(_ref2) {
     className: "py-2 w-36 rounded-md bg-blue-600 hover:bg-green-600 text-lg font-medium text-white  ml-4"
   }, "Plots")), type == "Applicants" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_tables_ShuffleTable__WEBPACK_IMPORTED_MODULE_4__["default"], {
     filteredApplicants: shuffledArray
-  })), type == "Plots" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_tables_PlotTable__WEBPACK_IMPORTED_MODULE_5__["default"], null)))));
+  })), type == "Plots" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_tables_PlotTable__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    plots: plotsArray
+  })))));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Shuffle);
 

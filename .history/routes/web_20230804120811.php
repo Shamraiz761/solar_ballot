@@ -16,8 +16,11 @@ use Inertia\Inertia;
 |
 */
 
+// Route::resource('/', ApplicantsController::class);
 Route::get('/', [ApplicantsController::class, 'indexPlots']);
 Route::get('/', [ApplicantsController::class, 'index']);
+
+
 
 Route::get('/draw', function () {
     $filteredApplicants = request()->input('drawApplicants', '[]');
@@ -25,6 +28,7 @@ Route::get('/draw', function () {
         "filteredApplicants" => $filteredApplicants,
     ]);
 });
+
 
 
 Route::get('/shuffle', function () {

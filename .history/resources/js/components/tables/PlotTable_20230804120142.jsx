@@ -38,7 +38,7 @@ function PlotTable({plots}) {
                             </th>
                             <td className="px-6 py-4">{plot.plot_no}</td>
                             <td className="px-6 py-4">{plot.plot_code}</td>
-                            <td className="px-6 py-4">{plot.plot_category}</td>
+                            <td className="px-6 py-4">{plot.plot_no}</td>
                         </tr>
                             )
                         })
