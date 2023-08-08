@@ -47,7 +47,7 @@ function Draw({ filteredApplicants = "[]" }) {
     return (
         <div className=" ">
             {loading ? (
-                <LoadingPage name={"Draw"}/>
+                <LoadingPage name=/>
             ) : (
                 <div>
                     <Banner />

@@ -69,7 +69,7 @@ function BallotingType({ applicants, plots}) {
     return (
         <div className=" ">
             {loading ? (
-                <LoadingPage name="Balloting Type Processing" />
+                <LoadingPage name="b" />
             ) : (
                 <div>
                     <Banner />

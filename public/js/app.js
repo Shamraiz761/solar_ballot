@@ -2897,12 +2897,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_loader_spinner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-loader-spinner */ "./node_modules/react-loader-spinner/dist/esm/index.js");
 
 
-function LoadingPage() {
+function LoadingPage(_ref) {
+  var name = _ref.name;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "flex justify-center flex-col gap-6 items-center min-h-screen bg-black"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
     className: "font-bold text-2xl md:text-4xl text-white"
-  }, "Loading..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_loader_spinner__WEBPACK_IMPORTED_MODULE_1__.ThreeDots, {
+  }, name, "..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_loader_spinner__WEBPACK_IMPORTED_MODULE_1__.ThreeDots, {
     height: "80",
     width: "80",
     radius: "9",
@@ -2985,7 +2986,6 @@ __webpack_require__.r(__webpack_exports__);
 
 function PlotTable(_ref) {
   var plots = _ref.plots;
-  console.log(plots);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: ""
   }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -3168,7 +3168,9 @@ function BallotingType(_ref) {
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: " "
-  }, loading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_loading_LoadingPage__WEBPACK_IMPORTED_MODULE_4__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_banner_Banner__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, loading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_loading_LoadingPage__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    name: "Balloting Type Processing"
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_banner_Banner__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "m-5 bg-green-500 text-white py-2 text-xl md:text-2xl uppercase "
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
     className: "text-center font-bold"
@@ -3243,7 +3245,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function Draw(_ref) {
   var _ref$filteredApplican = _ref.filteredApplicants,
     filteredApplicants = _ref$filteredApplican === void 0 ? "[]" : _ref$filteredApplican;
-  //   console.log(currentDateTime);
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState2 = _slicedToArray(_useState, 2),
     loading = _useState2[0],
@@ -3266,7 +3267,6 @@ function Draw(_ref) {
     setCurrentDate(now.toLocaleDateString());
     setCurrentTime(now.toLocaleTimeString());
   }, []);
-  console.log(currentDate);
   var totalEnteries = function totalEnteries() {
     setopen(!open);
   };
@@ -3287,7 +3287,9 @@ function Draw(_ref) {
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: " "
-  }, loading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_loading_LoadingPage__WEBPACK_IMPORTED_MODULE_4__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_banner_Banner__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, loading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_loading_LoadingPage__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    name: "Draw"
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_banner_Banner__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     "class": "m-5 bg-green-500 text-white py-2 text-xl md:text-2xl my-5 uppercase "
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
     className: "text-center font-bold"
@@ -3421,6 +3423,10 @@ function Shuffle(_ref2) {
     _useState10 = _slicedToArray(_useState9, 2),
     type = _useState10[0],
     setType = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState12 = _slicedToArray(_useState11, 2),
+    loadingMessage = _useState12[0],
+    setLoadingMessage = _useState12[1];
   var handleInputChange = function handleInputChange(index, value) {
     var updatedKeys = _toConsumableArray(keys);
     updatedKeys[index] = value;
@@ -3442,6 +3448,7 @@ function Shuffle(_ref2) {
     setLoading(true);
     var shuffledApplicantsArray = shuffleArray(_toConsumableArray(applicantsArray));
     setShuffledArray(shuffledApplicantsArray);
+    setLoadingMessage("Shuffling");
     setTimeout(function () {
       setLoading(false);
     }, 1000);
@@ -3454,13 +3461,16 @@ function Shuffle(_ref2) {
       return;
     }
     setLoading(true);
+    setLoadingMessage("Processing");
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.get("/draw", {
       drawApplicants: JSON.stringify(shuffledArray)
     });
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: " "
-  }, loading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_loading_LoadingPage__WEBPACK_IMPORTED_MODULE_3__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_banner_Banner__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, loading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_loading_LoadingPage__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: loadingMessage
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_banner_Banner__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "m-5 my-10 bg-green-500 text-white py-2 text-xl md:text-2xl uppercase "
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
     className: "text-center font-bold"

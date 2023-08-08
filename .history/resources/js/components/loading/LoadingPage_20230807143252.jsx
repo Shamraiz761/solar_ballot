@@ -1,10 +1,10 @@
 import React from "react";
 import { ThreeDots } from "react-loader-spinner";
-function LoadingPage({name}) {
+function LoadingPage() {
     return (
         <div className="flex justify-center flex-col gap-6 items-center min-h-screen bg-black">
             <h1 className="font-bold text-2xl md:text-4xl text-white">
-                {name}...
+                {Loading}...
             </h1>
             <ThreeDots
                 height="80"

@@ -4,7 +4,7 @@ import DrawTable from "../components/tables/DrawTable";
 import jsPDF from "jspdf";
 import LoadingPage from "../components/loading/LoadingPage";
 function Draw({ filteredApplicants = "[]" }) {
-
+    //   console.log(currentDateTime);
     const [loading, setLoading] = useState(false);
     const [open, setopen] = useState(false);
     const [currentDate, setCurrentDate] = useState(null);
@@ -18,6 +18,7 @@ function Draw({ filteredApplicants = "[]" }) {
         setCurrentTime(now.toLocaleTimeString());
     }, []);
 
+    console.log(currentDate);
 
     const totalEnteries = () => {
         setopen(!open);
@@ -47,7 +48,7 @@ function Draw({ filteredApplicants = "[]" }) {
     return (
         <div className=" ">
             {loading ? (
-                <LoadingPage name={"Draw"}/>
+                <LoadingPage />
             ) : (
                 <div>
                     <Banner />

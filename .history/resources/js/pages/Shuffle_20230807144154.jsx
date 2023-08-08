@@ -16,6 +16,7 @@ const shuffleArray = (array) => {
 function Shuffle({ filteredApplicants = "[]" ,filteredPlots ="[]"}) {
     const applicantsArray = JSON.parse(filteredApplicants);
     const plotsArray = JSON.parse(filteredPlots);
+    console.log(plotsArray);
     const [keys, setKeys] = useState(["", "", "", "", "", "", "", ""]);
     const [shuffledArray, setShuffledArray] = useState(applicantsArray);
     const [open, setopen] = useState(false);

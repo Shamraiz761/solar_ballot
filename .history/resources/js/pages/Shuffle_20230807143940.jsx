@@ -16,12 +16,13 @@ const shuffleArray = (array) => {
 function Shuffle({ filteredApplicants = "[]" ,filteredPlots ="[]"}) {
     const applicantsArray = JSON.parse(filteredApplicants);
     const plotsArray = JSON.parse(filteredPlots);
+    console.log(plotsArray);
     const [keys, setKeys] = useState(["", "", "", "", "", "", "", ""]);
     const [shuffledArray, setShuffledArray] = useState(applicantsArray);
     const [open, setopen] = useState(false);
     const [loading, setLoading] = useState(false);
     const [type, setType] = useState("");
-    const [loadingMessage, setLoadingMessage] = useState("")
+    
 
     const handleInputChange = (index, value) => {
         const updatedKeys = [...keys];
@@ -53,10 +54,9 @@ function Shuffle({ filteredApplicants = "[]" ,filteredPlots ="[]"}) {
         if (keys.some((key) => key === "")) {
             alert("Please enter a key in all input fields.");
             return;
-            
+            setLoadingMessage("Processing");
         }
         setLoading(true);
-            setLoadingMessage("Processing");
         Inertia.get("/draw", {
             drawApplicants: JSON.stringify(shuffledArray),
         });
